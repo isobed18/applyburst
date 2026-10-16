@@ -15,5 +15,10 @@ jobs:
       - uses: astral-sh/setup-uv@v10.3.0
       - run: uv sync --locked --extra bench
       - run: uv run --extra bench python -m pytest -q
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+      - name: Verify detailed CPU search, feed normalization and form inspection
+        run: node --test demo/tests/*.test.mjs
       - name: Verify loopback HTTP and SMTP execution without a GPU
         run: uv run --extra bench python -m applyburst.bench --jobs 10 --repeats 1 --output artifacts/ci-smoke.json

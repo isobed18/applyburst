@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "generated_at": 1792144817.0219707,
+  "sources": {
+    "kind": "live_read_only_discovery",
+    "elapsed_ms": 27172.504,
+    "total_indexed": 1892,
+    "boards": [
+      {
+        "provider": "greenhouse",
+        "board": "stripe",
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true",
+        "status": 200,
+        "bytes": 5667407,
+        "response_sha256": "70ec675c02350a0f2fdf657b45e0e218887eafcbe66bc7ae0c95929df8c409e8",
+        "jobs": 728,
+        "outcome": "indexed",
+        "elapsed_ms": 13599.879
+      },
+      {
+        "provider": "greenhouse",
+        "board": "cloudflare",
+        "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs?content=true",
+        "status": 200,
+        "bytes": 7557907,
+        "response_sha256": "f08095fa1697f4993657f71b2766c5d9a626aed5f50a5954353d725e1e434e36",
+        "jobs": 436,
+        "outcome": "indexed",
+        "elapsed_ms": 21712.014
+      },
+      {
+        "provider": "lever",
+        "board": "palantir",
+        "url": "https://api.lever.co/v0/postings/palantir?mode=json",
+        "jobs": 0,
+        "outcome": "failed",
+        "error": "TimeoutError: ",
+        "elapsed_ms": 21714.954
+      },
+      {
+        "provider": "ashby",
+        "board": "ashby",
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ashby",
+        "status": 200,
+        "bytes": 1917129,
+        "response_sha256": "492755fcd27c35496a1b981084dc0b6bdbff5519a1fc78940f2c4c03f1a7ec8e",
+        "jobs": 62,
+        "outcome": "indexed",
+        "elapsed_ms": 1532.529
+      },
+      {
+        "provider": "ashby",
+        "board": "ramp",
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ramp",
+        "status": 200,
+        "bytes": 2769350,
+        "response_sha256": "ab33042b94fbb38bc89459df69fb9cc56d209fe2969c14b30648410f2c40f1d7",
+        "jobs": 163,
+        "outcome": "indexed",
+        "elapsed_ms": 2553.942
+      },
+      {
+        "provider": "lever",
+        "board": "trendyol",
+        "url": "https://api.lever.co/v0/postings/trendyol?mode=json",
+        "status": 200,
+        "bytes": 431689,
+        "response_sha256": "3836e8db21ae51931363c6f6e248eb4f477f4b815d3d2e615442eb0ba1b39a6d",
+        "jobs": 42,
+        "outcome": "indexed",
+        "elapsed_ms": 19682.823
+      },
+      {
+        "provider": "lever",
+        "board": "insiderone",
+        "url": "https://api.lever.co/v0/postings/insiderone?mode=json",
+        "status": 200,
+        "bytes": 2710848,
+        "response_sha256": "e22eae7089f5858aab117ab3f969b196d8dab80d17d781281d16e4c581c46bd7",
+        "jobs": 114,
+        "outcome": "indexed",
+        "elapsed_ms": 5197.647
+      },
+      {
+        "provider": "lever",
+        "board": "peakgames",
+        "url": "https://api.lever.co/v0/postings/peakgames?mode=json",
+        "status": 200,
+        "bytes": 85542,
+        "response_sha256": "9aff8c7ae9dc8e2772a69999e3d69911282db8de4c422a4f710f194ad7f6abbe",
+        "jobs": 18,
+        "outcome": "indexed",
+        "elapsed_ms": 549.909
+      },
+      {
+        "provider": "lever",
+        "board": "dreamgames",
+        "url": "https://api.lever.co/v0/postings/dreamgames?mode=json",
+        "status": 200,
+        "bytes": 95669,
+        "response_sha256": "31c562e84191c3923d40b68d19ed852d413e9ad36ff5a6369eeebc684a4f62e6",
+        "jobs": 20,
+        "outcome": "indexed",
+        "elapsed_ms": 643.624
+      }
+    ],
+    "first_50_indexed_ms": 0.0,
+    "first_50_matches_ms": 0.0,
+    "milestone_query": "engineer",
+    "milestone_scope": "title",
+    "per_source_deadline_seconds": 20
+  },
+  "coverage": {
+    "jobs": 1892,
+    "unique_opportunities": 1850,
+    "with_description": 1891,
+    "with_skills": 907,
+    "workplace_known": 1209,
+    "seniority_known": 634
+  }
+}

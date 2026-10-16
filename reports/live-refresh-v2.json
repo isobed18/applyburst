@@ -1,0 +1,101 @@
+{
+  "schema_version": 2,
+  "generated_at": 1792145084.255,
+  "coverage": {
+    "jobs": 1892,
+    "unique_opportunities": 1850,
+    "with_description": 1891,
+    "with_skills": 908,
+    "workplace_known": 1209,
+    "seniority_known": 634
+  },
+  "sources": {
+    "kind": "live_read_only_discovery",
+    "elapsed_ms": 20827,
+    "total_indexed": 1892,
+    "boards": [
+      {
+        "provider": "greenhouse",
+        "board": "stripe",
+        "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true",
+        "status": 200,
+        "jobs": 728,
+        "outcome": "indexed",
+        "elapsed_ms": 2729
+      },
+      {
+        "provider": "greenhouse",
+        "board": "cloudflare",
+        "url": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs?content=true",
+        "status": 200,
+        "jobs": 436,
+        "outcome": "indexed",
+        "elapsed_ms": 3333
+      },
+      {
+        "provider": "ashby",
+        "board": "ashby",
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ashby",
+        "status": 200,
+        "jobs": 62,
+        "outcome": "indexed",
+        "elapsed_ms": 572
+      },
+      {
+        "provider": "ashby",
+        "board": "ramp",
+        "url": "https://api.ashbyhq.com/posting-api/job-board/ramp",
+        "status": 200,
+        "jobs": 163,
+        "outcome": "indexed",
+        "elapsed_ms": 664
+      },
+      {
+        "provider": "lever",
+        "board": "trendyol",
+        "url": "https://api.lever.co/v0/postings/trendyol?mode=json",
+        "status": 200,
+        "jobs": 42,
+        "outcome": "indexed",
+        "elapsed_ms": 2837
+      },
+      {
+        "provider": "lever",
+        "board": "insiderone",
+        "url": "https://api.lever.co/v0/postings/insiderone?mode=json",
+        "status": 200,
+        "jobs": 114,
+        "outcome": "indexed",
+        "elapsed_ms": 7866
+      },
+      {
+        "provider": "lever",
+        "board": "peakgames",
+        "url": "https://api.lever.co/v0/postings/peakgames?mode=json",
+        "status": 200,
+        "jobs": 18,
+        "outcome": "indexed",
+        "elapsed_ms": 238
+      },
+      {
+        "provider": "lever",
+        "board": "dreamgames",
+        "url": "https://api.lever.co/v0/postings/dreamgames?mode=json",
+        "status": 200,
+        "jobs": 20,
+        "outcome": "indexed",
+        "elapsed_ms": 3786
+      },
+      {
+        "provider": "lever",
+        "board": "palantir",
+        "url": "https://api.lever.co/v0/postings/palantir?mode=json",
+        "jobs": 0,
+        "outcome": "failed",
+        "error": "The operation was aborted due to timeout",
+        "retained_jobs": 309,
+        "elapsed_ms": 18010
+      }
+    ]
+  }
+}

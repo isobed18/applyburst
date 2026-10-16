@@ -1,0 +1,863 @@
+{
+  "utc": "2026-10-16T09:46:52.400Z",
+  "node": "v24.13.0",
+  "scope": "Full-description CPU search; Node process on desktop, not laptop or browser evidence",
+  "jobs": 1891,
+  "decoded_bytes": 14377865,
+  "gzip_bytes": 2553042,
+  "json_parse_ms": 79.3205,
+  "index_build_ms": 2311.4647999999997,
+  "additional_index_heap_bytes": 66145848,
+  "process_heap_bytes": 151185000,
+  "queries": [
+    {
+      "query": "description:postgresql",
+      "matches": 83,
+      "median_ms": 0.5226999999999862,
+      "p95_ms": 1.9158000000002176,
+      "samples_ms": [
+        0.16520000000036816,
+        0.17840000000023792,
+        0.19990000000007058,
+        0.21059999999988577,
+        0.23070000000006985,
+        0.2518000000000029,
+        0.25709999999980937,
+        0.2721999999998843,
+        0.2964999999999236,
+        0.3120000000003529,
+        0.36760000000003856,
+        0.3706999999999425,
+        0.4569000000001324,
+        0.4687999999996464,
+        0.5126000000000204,
+        0.5226999999999862,
+        0.5423999999998159,
+        0.5492000000003827,
+        0.5907000000001972,
+        0.6545999999998457,
+        0.7222999999999047,
+        0.7657999999996719,
+        0.7771999999999935,
+        0.8018999999999323,
+        0.8153000000002066,
+        0.8427000000001499,
+        0.9429999999997563,
+        1.8637999999996282,
+        1.9158000000002176,
+        17.510999999999967
+      ],
+      "examples": [
+        {
+          "id": "greenhouse:cloudflare:8158016",
+          "title": "Systems Engineer - Database Platform",
+          "company": "Cloudflare",
+          "evidence": [
+            {
+              "field": "description",
+              "term": "postgresql",
+              "text": "…k, San Francisco\n\nAbout the Team\n\nWe manage an internal, multi-region PostgreSQL platform that enables engineers to rapidly build, deploy, and operate services. Our mission is to provide a highly available, stable, and self-service platform…"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:cloudflare:8257140",
+          "title": "Systems Engineer - Data Security",
+          "company": "Cloudflare",
+          "evidence": [
+            {
+              "field": "description",
+              "term": "postgresql",
+              "text": "About Us\n\nAt Cloudflare, we are on a mission to help build a better Internet. Today the company runs one of the world’s largest networks that powers millions of websites …"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8194328",
+          "title": "Senior Software Engineer, Product Velocity",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "description",
+              "term": "postgresql",
+              "text": "…ng and consuming REST or gRPC APIs;\n\nWorking with databases including PostgreSQL, mySQL, or NoSQL systems;\n\nCloud environments including AWS, or GCP;\n\nFrontend frameworks including React, Vue or building product UIs;\n\nOwning large component…"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "description:\"distributed systems\" NOT title:senior",
+      "matches": 134,
+      "median_ms": 3.6006999999999607,
+      "p95_ms": 7.185399999999845,
+      "samples_ms": [
+        1.4658999999996922,
+        1.486699999999928,
+        1.6485999999999876,
+        1.699999999999818,
+        1.7164999999999964,
+        1.7265999999999622,
+        1.7653000000000247,
+        1.8429999999998472,
+        2.0020999999997002,
+        2.1660000000001673,
+        2.2267000000001644,
+        2.525300000000243,
+        2.6323999999999614,
+        3.1024999999999636,
+        3.4302999999999884,
+        3.6006999999999607,
+        3.703100000000177,
+        4.105799999999817,
+        4.300600000000031,
+        4.304999999999836,
+        4.311700000000201,
+        4.3323999999997795,
+        4.3815999999997075,
+        4.609999999999673,
+        4.947500000000218,
+        4.95470000000023,
+        5.41359999999986,
+        6.817599999999857,
+        7.185399999999845,
+        12.253399999999601
+      ],
+      "examples": [
+        {
+          "id": "greenhouse:stripe:7975725",
+          "title": "Software Engineer, Core Infrastructure",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "description",
+              "term": "distributed systems",
+              "text": "…\nA strong engineering background in building platform services and/or distributed systems at scale, with a solid grasp of underlying operating system primitives\n\nExperience developing, maintaining, and debugging distributed systems, includi…"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8209967",
+          "title": "Staff Software Engineer, High Availability and Disaster Recovery",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "description",
+              "term": "distributed systems",
+              "text": "…ical, stateful applications to survive any type of disaster. We build distributed systems on top of unreliable architecture to provide highly available and resilient customer solutions. This team is creating greenfield solutions which will …"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8209970",
+          "title": "Software Engineer, Stripe Data Pipeline",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "description",
+              "term": "distributed systems",
+              "text": "…s of experience in delivering, extending, and maintaining large-scale distributed systems\n\n• Love to design systems that are elegant abstractions over complex patterns and practices, especially in the financial industry.\n\n• Hold yourself an…"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "location:turkey AND (skill:python OR skill:java OR skill:sql)",
+      "matches": 2,
+      "median_ms": 0.1855000000000473,
+      "p95_ms": 0.32749999999987267,
+      "samples_ms": [
+        0.13459999999986394,
+        0.14849999999978536,
+        0.15590000000020154,
+        0.15670000000000073,
+        0.1673000000000684,
+        0.16829999999981737,
+        0.17390000000023065,
+        0.17479999999977736,
+        0.17799999999988358,
+        0.1780999999996311,
+        0.17820000000028813,
+        0.17849999999998545,
+        0.17860000000018772,
+        0.18280000000004293,
+        0.1849000000001979,
+        0.1855000000000473,
+        0.1873000000000502,
+        0.18760000000020227,
+        0.2023999999996704,
+        0.20260000000007494,
+        0.21550000000024738,
+        0.2209000000002561,
+        0.22749999999996362,
+        0.23059999999986758,
+        0.2343999999998232,
+        0.26139999999986685,
+        0.26769999999987704,
+        0.31419999999980064,
+        0.32749999999987267,
+        0.3374000000003434
+      ],
+      "examples": [
+        {
+          "id": "lever:insiderone:1838777d-1223-4a02-97cb-468886673d1c",
+          "title": "Senior Security Engineer - Red Team (Remote)",
+          "company": "Insider One",
+          "evidence": [
+            {
+              "field": "location",
+              "term": "turkey",
+              "text": "Istanbul, Turkiye"
+            },
+            {
+              "field": "skill",
+              "term": "python",
+              "text": "Python · JavaScript · AWS · Machine learning"
+            }
+          ]
+        },
+        {
+          "id": "lever:insiderone:ee932b8c-0e12-45c1-8c1a-1ec95c4e623c",
+          "title": "Software Engineer - (AI Native)",
+          "company": "Insider One",
+          "evidence": [
+            {
+              "field": "location",
+              "term": "turkey",
+              "text": "Turkey"
+            },
+            {
+              "field": "skill",
+              "term": "python",
+              "text": "Python · TypeScript · LLM · Go"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "workplace:remote AND (kubernetes OR terraform)",
+      "matches": 10,
+      "median_ms": 0.22539999999980864,
+      "p95_ms": 0.6868999999996959,
+      "samples_ms": [
+        0.10359999999991487,
+        0.1048000000000684,
+        0.11540000000013606,
+        0.17889999999988504,
+        0.18689999999969586,
+        0.18699999999989814,
+        0.19119999999975335,
+        0.19630000000006476,
+        0.19769999999971333,
+        0.20759999999972933,
+        0.2076999999999316,
+        0.2106999999996333,
+        0.21189999999978681,
+        0.2122999999996864,
+        0.22270000000025902,
+        0.22539999999980864,
+        0.23780000000033397,
+        0.2402999999999338,
+        0.2498000000000502,
+        0.25959999999986394,
+        0.27789999999959036,
+        0.2842000000000553,
+        0.30840000000034706,
+        0.3186000000000604,
+        0.3577999999997701,
+        0.3651999999997315,
+        0.3690000000001419,
+        0.6630000000000109,
+        0.6868999999996959,
+        0.7692999999999302
+      ],
+      "examples": [
+        {
+          "id": "ashby:ramp:34413f8d-26bf-4bbc-8ade-eb309a0e2245",
+          "title": " Security Engineer, Cloud",
+          "company": "Ramp",
+          "evidence": [
+            {
+              "field": "workplace",
+              "term": "remote",
+              "text": "remote"
+            },
+            {
+              "field": "skill",
+              "term": "terraform",
+              "text": "Python · AWS · Azure · GCP · Terraform"
+            }
+          ]
+        },
+        {
+          "id": "ashby:ramp:bca0346c-b843-4795-96df-6091f51e421b",
+          "title": "Software Engineer, Data Platform ",
+          "company": "Ramp",
+          "evidence": [
+            {
+              "field": "workplace",
+              "term": "remote",
+              "text": "remote"
+            },
+            {
+              "field": "skill",
+              "term": "terraform",
+              "text": "Python · SQL · AWS · Azure · GCP · Terraform · Machine learning"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:7292520",
+          "title": "Backend Engineer, Developer & End-user Experience Platform",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "workplace",
+              "term": "remote",
+              "text": "remote"
+            },
+            {
+              "field": "skill",
+              "term": "kubernetes",
+              "text": "AWS · Docker · Kubernetes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "(level:junior OR type:intern) AND (engineer OR developer)",
+      "matches": 76,
+      "median_ms": 0.9322999999999411,
+      "p95_ms": 1.6131000000000313,
+      "samples_ms": [
+        0.5027000000000044,
+        0.6473999999998341,
+        0.6501000000002932,
+        0.659099999999853,
+        0.6604999999999563,
+        0.6618000000003121,
+        0.6647000000002663,
+        0.6831999999999425,
+        0.6970000000001164,
+        0.7075999999997293,
+        0.7545000000000073,
+        0.8144000000002052,
+        0.8497000000002117,
+        0.8514000000000124,
+        0.9058999999997468,
+        0.9322999999999411,
+        0.9843999999998232,
+        1.0064000000002125,
+        1.014100000000326,
+        1.0286000000000968,
+        1.0921000000003005,
+        1.121900000000096,
+        1.1248000000000502,
+        1.1287999999999556,
+        1.3157000000001062,
+        1.3525999999997111,
+        1.3841999999999643,
+        1.548899999999776,
+        1.6131000000000313,
+        2.1505999999999403
+      ],
+      "examples": [
+        {
+          "id": "lever:dreamgames:c801dd86-2e4a-4355-910b-969e847ee076",
+          "title": "DevOps Engineer (New Grad)",
+          "company": "Dream Games",
+          "evidence": [
+            {
+              "field": "level",
+              "term": "junior",
+              "text": "junior"
+            },
+            {
+              "field": "title",
+              "term": "engineer",
+              "text": "DevOps Engineer (New Grad)"
+            },
+            {
+              "field": "description",
+              "term": "developer",
+              "text": "…ng for!\n\nResponsibilities\n\nBuilding and supporting infrastructure and developer tools to improve game development processes\n\nBuilding advanced automated build, test, and release infrastructure\n\nProviding troubleshooting and timely resolutio…"
+            }
+          ]
+        },
+        {
+          "id": "lever:dreamgames:0714caf0-4077-44f3-a1d4-8985b9baf1bc",
+          "title": "Software Engineer (New Grad)",
+          "company": "Dream Games",
+          "evidence": [
+            {
+              "field": "level",
+              "term": "junior",
+              "text": "junior"
+            },
+            {
+              "field": "title",
+              "term": "engineer",
+              "text": "Software Engineer (New Grad)"
+            }
+          ]
+        },
+        {
+          "id": "lever:peakgames:cfaf2251-1472-4e73-b0a3-e3e88df7aa91",
+          "title": "Software Engineer, Backend (New Grad)",
+          "company": "Peak",
+          "evidence": [
+            {
+              "field": "level",
+              "term": "junior",
+              "text": "junior"
+            },
+            {
+              "field": "title",
+              "term": "engineer",
+              "text": "Software Engineer, Backend (New Grad)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "title:engineer AND skill:python NOT level:lead",
+      "matches": 301,
+      "median_ms": 1.581800000000385,
+      "p95_ms": 3.11200000000008,
+      "samples_ms": [
+        1.0873000000001412,
+        1.104899999999816,
+        1.162499999999909,
+        1.1667999999999665,
+        1.1947000000000116,
+        1.2086000000003878,
+        1.2159999999998945,
+        1.2505999999998494,
+        1.2518999999997504,
+        1.290100000000166,
+        1.4652000000000953,
+        1.481499999999869,
+        1.5215000000002874,
+        1.5579999999999927,
+        1.565299999999752,
+        1.581800000000385,
+        1.664299999999912,
+        1.7822000000001026,
+        1.873700000000099,
+        1.9205000000001746,
+        2.0043000000000575,
+        2.0849999999995816,
+        2.1612999999997555,
+        2.425799999999981,
+        2.473199999999906,
+        2.510699999999815,
+        2.7717999999999847,
+        2.88550000000032,
+        3.11200000000008,
+        3.5295000000000982
+      ],
+      "examples": [
+        {
+          "id": "lever:dreamgames:2a2c64d7-cc33-49a0-bf41-807b28933ca7",
+          "title": "AI Engineer, Performance Marketing",
+          "company": "Dream Games",
+          "evidence": [
+            {
+              "field": "title",
+              "term": "engineer",
+              "text": "AI Engineer, Performance Marketing"
+            },
+            {
+              "field": "skill",
+              "term": "python",
+              "text": "Python · LLM"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8197891",
+          "title": "Software Engineer, Online Database Infrastructure",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "title",
+              "term": "engineer",
+              "text": "Software Engineer, Online Database Infrastructure"
+            },
+            {
+              "field": "skill",
+              "term": "python",
+              "text": "Python · Java · AWS · Azure · GCP · Distributed systems · Go"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8249901",
+          "title": "Software Engineer",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "title",
+              "term": "engineer",
+              "text": "Software Engineer"
+            },
+            {
+              "field": "skill",
+              "term": "python",
+              "text": "Python · Java · AWS · Azure · Linux · Distributed systems · Go"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "company:stripe AND (java OR ruby)",
+      "matches": 82,
+      "median_ms": 0.6482999999998356,
+      "p95_ms": 2.6721999999999753,
+      "samples_ms": [
+        0.37459999999964566,
+        0.40970000000015716,
+        0.4681000000000495,
+        0.5104000000001179,
+        0.5131000000001222,
+        0.5217999999999847,
+        0.5360000000000582,
+        0.5381999999999607,
+        0.5403000000001157,
+        0.5602999999996428,
+        0.5671999999999571,
+        0.5817999999999302,
+        0.5891000000001441,
+        0.5911000000000968,
+        0.6084999999998217,
+        0.6482999999998356,
+        0.6655000000000655,
+        0.8090000000001965,
+        0.8333000000002357,
+        0.8659999999999854,
+        0.8879000000001724,
+        0.9018000000000939,
+        0.9225999999998749,
+        1.0708999999997104,
+        1.2345000000000255,
+        1.3515999999999622,
+        1.372599999999693,
+        1.6808000000000902,
+        2.6721999999999753,
+        3.136199999999917
+      ],
+      "examples": [
+        {
+          "id": "greenhouse:stripe:8197135",
+          "title": "Software Engineer, High Availability and Disaster Recovery",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "company",
+              "term": "stripe",
+              "text": "Stripe"
+            },
+            {
+              "field": "skill",
+              "term": "java",
+              "text": "Java · SQL · PostgreSQL · Go"
+            },
+            {
+              "field": "description",
+              "term": "ruby",
+              "text": "…plement, and deploy solutions using multiple technologies, including: Ruby, Java, Mongo, Postgres, and other necessary tools as required.\n\nInvestigate issues in live, distributed production systems.\n\nCollaborate across the company to provid…"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8197891",
+          "title": "Software Engineer, Online Database Infrastructure",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "company",
+              "term": "stripe",
+              "text": "Stripe"
+            },
+            {
+              "field": "skill",
+              "term": "java",
+              "text": "Python · Java · AWS · Azure · GCP · Distributed systems · Go"
+            },
+            {
+              "field": "description",
+              "term": "ruby",
+              "text": "…velopment team in AWS, Azure, OCI or GCP; and\n\nProgramming languages: Ruby, Go, Python, or Java.\n\nSalary: $206,086.00 - $285,600.00/yr\n\nThis salary range represents the base salary range for the role and any sales commissions/sales bonuses …"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8194328",
+          "title": "Senior Software Engineer, Product Velocity",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "company",
+              "term": "stripe",
+              "text": "Stripe"
+            },
+            {
+              "field": "skill",
+              "term": "java",
+              "text": "Python · JavaScript · TypeScript · Java · PostgreSQL · React · AWS · GCP · Go"
+            },
+            {
+              "field": "description",
+              "term": "ruby",
+              "text": "…d web applications;\n\nProgramming language including Java, Go, Python, Ruby, TypeScript, or JavaScript;\n\nBuilding and consuming REST or gRPC APIs;\n\nWorking with databases including PostgreSQL, mySQL, or NoSQL systems;\n\nCloud environments inc…"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "skill:\"C++\" AND (game OR runtime)",
+      "matches": 19,
+      "median_ms": 0.1893000000000029,
+      "p95_ms": 0.6001000000001113,
+      "samples_ms": [
+        0.09529999999995198,
+        0.10159999999996217,
+        0.1226000000001477,
+        0.1325000000001637,
+        0.1350999999999658,
+        0.13899999999966894,
+        0.14370000000008076,
+        0.14949999999998909,
+        0.15010000000029322,
+        0.1511000000000422,
+        0.15459999999984575,
+        0.15750000000025466,
+        0.16170000000010987,
+        0.1696999999999207,
+        0.1698999999998705,
+        0.1893000000000029,
+        0.1938000000000102,
+        0.19869999999991705,
+        0.20580000000018117,
+        0.24739999999974316,
+        0.2634000000002743,
+        0.2735000000002401,
+        0.27930000000014843,
+        0.3283000000001266,
+        0.43069999999988795,
+        0.43380000000024665,
+        0.5063000000000102,
+        0.50649999999996,
+        0.6001000000001113,
+        1.0752999999999702
+      ],
+      "examples": [
+        {
+          "id": "lever:dreamgames:f16a1f7b-03e4-493a-b5bc-851f66e105cd",
+          "title": "Game Developer",
+          "company": "Dream Games",
+          "evidence": [
+            {
+              "field": "skill",
+              "term": "C++",
+              "text": "Java · C++ · C# · Unity"
+            },
+            {
+              "field": "title",
+              "term": "game",
+              "text": "Game Developer"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:cloudflare:7653558",
+          "title": "Engineering Manager - Workers Runtime, Edge Team",
+          "company": "Cloudflare",
+          "evidence": [
+            {
+              "field": "skill",
+              "term": "C++",
+              "text": "JavaScript · C++ · Rust · Linux · Distributed systems"
+            },
+            {
+              "field": "description",
+              "term": "game",
+              "text": "…ts.\n\nExperience working in low-latency real-time environments such as game streaming, game engine architecture, high-frequency trading, or payment systems.\n\nExperience debugging, optimizing, and identifying failure modes in a large-scale Li…"
+            },
+            {
+              "field": "title",
+              "term": "runtime",
+              "text": "Engineering Manager - Workers Runtime, Edge Team"
+            }
+          ]
+        },
+        {
+          "id": "lever:dreamgames:ddd317b1-11f6-4477-9ca0-d35dd0a279fe",
+          "title": "Software Engineer",
+          "company": "Dream Games",
+          "evidence": [
+            {
+              "field": "skill",
+              "term": "C++",
+              "text": "Java · C++ · C# · Unity"
+            },
+            {
+              "field": "description",
+              "term": "game",
+              "text": "…ftware Engineer to join our team. You will contribute to all areas of game development, including programming of graphics, game logic, and user interface using Unity. It is not required to have prior game development experience since we bel…"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "(node.js OR react) NOT company:palantir",
+      "matches": 73,
+      "median_ms": 0.5174000000001797,
+      "p95_ms": 2.3272000000001754,
+      "samples_ms": [
+        0.41210000000000946,
+        0.42180000000007567,
+        0.4246000000002823,
+        0.42739999999957945,
+        0.42929999999978463,
+        0.4313000000001921,
+        0.4329999999999927,
+        0.4389000000001033,
+        0.44370000000026266,
+        0.4456000000000131,
+        0.4469000000003689,
+        0.4479999999998654,
+        0.45979999999963184,
+        0.46030000000018845,
+        0.4808000000002721,
+        0.5174000000001797,
+        0.655699999999797,
+        0.6559999999999491,
+        0.662300000000414,
+        0.7712999999998829,
+        0.8391999999998916,
+        0.9722999999999047,
+        1.0048999999999069,
+        1.2397000000000844,
+        1.3319000000001324,
+        1.4304999999999382,
+        1.6807000000003427,
+        1.748199999999997,
+        2.3272000000001754,
+        3.5698999999999614
+      ],
+      "examples": [
+        {
+          "id": "ashby:ramp:7bfa613e-151c-469b-9973-c89ee3d14838",
+          "title": "Backend Engineer, Ops Engineering",
+          "company": "Ramp",
+          "evidence": [
+            {
+              "field": "skill",
+              "term": "node.js",
+              "text": "Python · JavaScript · TypeScript · PostgreSQL · React · Node.js · AWS · Redis · LLM"
+            },
+            {
+              "field": "skill",
+              "term": "react",
+              "text": "Python · JavaScript · TypeScript · PostgreSQL · React · Node.js · AWS · Redis · LLM"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:8039948",
+          "title": "Technical Solutions Engineer",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "skill",
+              "term": "node.js",
+              "text": "Python · Java · .NET · React · Node.js · LLM · Go"
+            },
+            {
+              "field": "skill",
+              "term": "react",
+              "text": "Python · Java · .NET · React · Node.js · LLM · Go"
+            }
+          ]
+        },
+        {
+          "id": "greenhouse:stripe:7377101",
+          "title": "Technical Solutions Engineer",
+          "company": "Stripe",
+          "evidence": [
+            {
+              "field": "skill",
+              "term": "node.js",
+              "text": "Python · Java · .NET · React · Node.js · LLM · Go"
+            },
+            {
+              "field": "skill",
+              "term": "react",
+              "text": "Python · Java · .NET · React · Node.js · LLM · Go"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "description:\"work authorization\"",
+      "matches": 1,
+      "median_ms": 2.728700000000117,
+      "p95_ms": 9.316699999999855,
+      "samples_ms": [
+        1.6756000000000313,
+        1.6817000000000917,
+        1.6880999999998494,
+        1.8350000000000364,
+        1.9533999999998741,
+        2.08829999999989,
+        2.094699999999648,
+        2.1166000000002896,
+        2.123700000000099,
+        2.1708000000003267,
+        2.1896999999999025,
+        2.2042999999998756,
+        2.2970000000000255,
+        2.380999999999858,
+        2.626299999999901,
+        2.728700000000117,
+        2.9915000000000873,
+        3.143899999999576,
+        3.2367999999996755,
+        3.4070999999999003,
+        3.50630000000001,
+        3.774800000000141,
+        3.8458999999998014,
+        3.9800999999997657,
+        4.065599999999904,
+        4.335500000000138,
+        4.525100000000293,
+        4.81899999999996,
+        9.316699999999855,
+        10.541999999999916
+      ],
+      "examples": [
+        {
+          "id": "ashby:ramp:1be5d28f-fa06-4b39-b81c-1e1e0cdd8337",
+          "title": "Senior Analyst, Global Mobility & Immigration",
+          "company": "Ramp",
+          "evidence": [
+            {
+              "field": "description",
+              "term": "work authorization",
+              "text": "…ting promptly.\n\nNICE TO HAVE\n\n - Experience coordinating immigration, work authorization, relocation, or external counsel/vendor workflows.\n\n - Experience building employee-facing guides, operational dashboards, or self-service tools.\n\n - F…"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,46 @@
-# Baseline measurements — 16 October 2026
+# Measurements — 16 October 2026
 
-All application writes used synthetic data and loopback receivers. Public sites were accessed with GET requests only. No employer application or recruiter email was sent. No model benchmark is complete. There is no GPU dependency.
+All application writes used synthetic data and project-owned loopback/hosted sandbox receivers. Employer sites were accessed with GET requests only. No employer application or recruiter email was sent. No model benchmark is complete. There is no GPU dependency.
+
+## V2: detailed search and the website
+
+The V2 bundle contains **1,892 postings / 1,850 unique opportunities** from nine boards. Greenhouse internal requisition IDs collapse 42 repeated postings; different matching locations are retained before collapse. Full descriptions exist for 1,891 postings, technology mentions for 907, workplace evidence for 1,209, and recognizable title seniority for 634. Unknowns remain unknown.
+
+The exporter refresh took 27.17s with one failed source; it retained previous Palantir postings. Its first-50 milestone values are zero because this was an already-populated catalog, **not an empty-index bootstrap result**. The website live-refresh probe took 20.83s; Palantir timed out at 18s and its 309 previous records were retained with their old observation ages. The JavaScript/Python enrichers currently differ by one technology-tagged record. These reports demonstrate partial-result preservation, not all-source success: [discovery-v2.json](../reports/discovery-v2.json), [live-refresh-v2.json](../reports/live-refresh-v2.json).
+
+### Shared CPU search engine
+
+Node v24.13.0 on the same desktop; ten detailed queries, 30 samples each, prebuilt index already loaded. JSON parse: 32.88ms; packed-index parse: 12.26ms; engine initialization: 11.66ms. **Query p95 spans 0.09–3.45ms**, depending on the expression. These query times exclude network transfer, parsing, UI rendering, and startup. They are not laptop results.
+
+The catalog is 14,524,420 decoded bytes / 2,577,203 bytes gzip. The packed inverted index is 6,265,598 decoded / 1,552,371 bytes gzip. Compression is a local gzip calculation, not measured deployment wire bytes. Additional Node heap for loading the packed index was 17,488,352 bytes; whole process heap was 79,042,128 bytes. Browser peak memory and laptop behavior remain unmeasured.
+
+An index-build probe measured 1,000ms to build from descriptions versus 3.62ms to initialize the packed representation, checking result parity on six queries. The separate query benchmark's initialization was 11.66ms; variation is preserved rather than presenting the fastest sample as a guarantee. A changed live catalog falls back to a local build; the browser UI reports which path it actually used.
+
+Example results: `description:postgresql` found 80 unique opportunities. `description:postgresql NOT level:senior` returned 62 in browser QA, including database requirements absent from titles. The default `skill:python AND (backend OR "distributed systems") NOT level:senior` returned 108 on this snapshot. These are lexical matches, not 108 eligible jobs for the synthetic or actual user.
+
+Raw evidence: [search-v2-final.json](../reports/search-v2-final.json), [index-v2.json](../reports/index-v2.json). [search-v2.json](../reports/search-v2.json) preserves the earlier full-build experiment.
+
+### Preparation and sandbox execution
+
+A real read-only Stripe Greenhouse question inspection found **23 required groups, five recognized identity/upload mappings, and 18 unresolved required groups**. Alternate resume file/text inputs count as one question group. This establishes required-field discovery, not submission readiness. [Raw inspection](../reports/form-inspection-v2.json).
+
+The browser selected 50 actual matching opportunities and made 50 multipart requests with a 26,624-byte synthetic resume and six fixed answers. At concurrency five, the local V2 run finished in **0.9443s**, including **0.9150s submission/receipt checking + 0.0293s independent receiver reread**. All 50 had matching IDs, hashes and confirmed sandbox states; all 50 were persisted; zero outcomes were unknown. This local receiver has no injected ATS delay. [Downloaded browser evidence](../reports/sandbox-browser-v2-local.json).
+
+Six API checks separately verified valid uploads, stable idempotent replay, corrupt-byte rejection, missing-answer rejection, unregistered-board rejection, and exactly one independently stored receipt after replay. [Raw API checks](../reports/sandbox-api-v2.json).
+
+Browser QA also checked description-only retrieval, invalid-query clearing, real form inspection, synthetic email download, and the 390px responsive layout. The desktop browser's local-index rebuild showed 717ms in one observation; this is a single startup observation, not a percentile or a laptop measurement.
+
+The deployed owner-private site's HTTPS API was then tested with supported Sites service access from a Node desktop client. **50/50 sandbox receipts were confirmed and persisted in 5.8570s**, comprising 5.5735s submission and 0.2835s final receiver verification. Five requests ran concurrently; each uploaded 26,624 synthetic bytes. Replay, corrupt bytes, missing answers, and unknown board rejection also passed. The initial catalog download plus local full-text index build took 6.4675s; its first detailed query took 13.12ms and found 108 unique matches. These are single hosted API observations, not browser measurements or percentiles.
+
+The subsequent hosted refresh completed in 11.641s including response transfer, with all nine sources succeeding. Earlier partial-source runs remain above. Hosted Greenhouse inspection again reported 23 required groups and 18 unresolved; real submission remained unverified. [Hosted raw evidence](../reports/hosted-demo-v2.json). The interactive UI was verified locally; the deployed browser requires the owner's ChatGPT sign-in. No access policy was relaxed for testing.
+
+### Correctness and limits
+
+20 Python tests and 24 dependency-free JavaScript tests passed. They include full Lever sections, HTML cleanup, cache representation invalidation, phrase and Boolean semantics, punctuation skills, Go-versus-verb aliasing, Turkish location normalization, missing facts, explicit filters, evidence, canonical collapse, alternative form controls, and abstention on consent/custom questions. The site TypeScript check and production build passed.
+
+These tests establish implementation behavior, not a manually judged real-world retrieval benchmark. They do not compare Jev or other models, prove market-wide recall, test the actual laptop, or validate any real employer application adapter. The website visibly reports real employer adapters as zero.
+
+## Earlier title-search and executor baseline
 
 ## Environment and method
 

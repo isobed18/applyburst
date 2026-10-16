@@ -4,7 +4,7 @@ import json
 import re
 import sqlite3
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 
@@ -17,6 +17,16 @@ class Job:
     location: str
     apply_url: str
     description: str = ""
+    locations: tuple[str, ...] = ()
+    workplace: str = "unknown"
+    seniority: str = "unknown"
+    employment_type: str = "unknown"
+    skills: tuple[str, ...] = ()
+    department: str = ""
+    posted_at: str | None = None
+    salary: dict | None = None
+    signals: dict = field(default_factory=dict)
+    opportunity_id: str | None = None
 
     @property
     def key(self) -> str:
@@ -44,6 +54,10 @@ class Catalog:
                 last_success REAL, PRIMARY KEY(provider, board)
             );
         """)
+        columns={row[1] for row in self.db.execute('PRAGMA table_info(board_state)')}
+        if 'representation' not in columns:
+            self.db.execute('ALTER TABLE board_state ADD COLUMN representation TEXT')
+            self.db.commit()
 
     def replace_board(self, provider: str, board: str, jobs: list[Job], now: float | None = None):
         now = time.time() if now is None else now
@@ -92,10 +106,10 @@ class Catalog:
                               (provider, board)).fetchone()
         return dict(row) if row else {}
 
-    def record_refresh(self, provider, board, etag, modified, sha256):
+    def record_refresh(self, provider, board, etag, modified, sha256, representation=None):
         with self.db:
-            self.db.execute("INSERT OR REPLACE INTO board_state VALUES (?,?,?,?,?,?)",
-                            (provider, board, etag, modified, sha256, time.time()))
+            self.db.execute("INSERT OR REPLACE INTO board_state (provider,board,etag,modified,sha256,last_success,representation) VALUES (?,?,?,?,?,?,?)",
+                            (provider, board, etag, modified, sha256, time.time(),representation))
 
     def touch_board(self, provider, board):
         with self.db:

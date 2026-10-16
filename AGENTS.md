@@ -9,4 +9,4 @@
 - Design for ordinary CPU-only laptops; a GPU is optional. Do not run GPU inference or download models while the user's GPU is in use. Prioritize conceptual architecture and job discovery, then application execution; model experiments come later.
 - Do not make LLMs a dependency for discovery, matching, or known-form execution. Compare rules, small classifiers, retrieval, and templates before adding generative models.
 - Do not commit credentials, browser profiles, candidate documents, personal profiles, or application contents.
-- Baseline tests submit only synthetic data to loopback fixtures. Real email or employer submissions need explicit user authorization for the reviewed batch.
+- Tests submit only synthetic data to this project's loopback or hosted sandbox receivers. Real email or employer submissions need explicit user authorization for the reviewed batch.

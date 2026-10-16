@@ -1,76 +1,92 @@
 # ApplyBurst
 
-**Find jobs fast. Prepare and execute supported applications without a per-click AI loop.**
+**Find jobs fast, search beyond titles, prepare applications, and measure verified completion.**
 
-CPU-only research baseline for a replacement of [linkedin_job_scraper](https://github.com/isobed18/linkedin_job_scraper). No n8n, GPU, model download or LLM API key is required. The current focus is discovery and a measured execution architecture. Real employer application adapters and the public demo are later milestones.
+CPU-only replacement architecture for [linkedin_job_scraper](https://github.com/isobed18/linkedin_job_scraper). No n8n, GPU, model download, or LLM API key. The website demonstrates the whole discovery → search → preparation → sandbox submission → receipt pipeline.
 
-## Measured on 16 October 2026
+**Demo:** https://applyburst.decentbard5.chatgpt.site (owner-private research preview).
 
-- Empty-index discovery: **50 “engineer” title matches in 0.77 seconds**, all **1,890 jobs from nine boards in 5.89 seconds**.
-- Cached HTTP search: **12ms median / 33ms p95**, 200 requests returning 50 title matches each from a separate 1,695-job catalog.
-- Known-form application fixtures: 50 submissions with validated uploaded bytes and receipts. See the full HTTP/browser/SMTP timings in [benchmarks](docs/BENCHMARKS.md).
-- JobSpy LinkedIn probe: **20/50 requested results in 14.3 seconds**, with an observed 429 warning.
+## What you can try
 
-These are desktop measurements, not laptop results. Search matches are not proof of personal eligibility. All application writes target loopback fixtures; no employer applications or recruiter emails were sent. SMTP acceptance is reported separately from delivery and ATS submission.
+- Search full descriptions with Boolean expressions, phrases, aliases, and fields. Example: `skill:python AND (backend OR "distributed systems") NOT level:senior`.
+- Filter location, workplace, seniority, technology mentions, employment type, known annual USD salary, and observation age. Inspect the source evidence for a match.
+- Select 50 unique opportunities, inspect a live Greenhouse question schema, and download a synthetic email draft.
+- Run 50 actual multipart requests against the hosted **sandbox**. Uploads are hashed, six synthetic answers are checked, receipts are persisted in D1, and the receiver is independently read again.
+- See local browser timing, data completeness, partial source failures, and limits in System lab. Refresh the public feeds without crawling during each query.
 
-## Run discovery
+**Real employer submission adapters: zero.** No recruiter email or employer application was sent. Fast sandbox execution does not establish that 50 arbitrary employer applications can be completed in seconds. Required facts, authentication, conditional questions, rate limits, and receipt recognition still need verified adapters.
 
-From the repository root, with Python 3.12+ and [uv](https://docs.astral.sh/uv/):
+## Measurements, 16 October 2026
+
+| Experiment | Result | Boundary |
+| --- | --- | --- |
+| Full-description catalog | 1,892 postings / 1,850 unique opportunities | Nine employer boards; 1,891 descriptions; failed-board cache retained |
+| Detailed CPU queries | 0.09–3.45ms p95 across ten queries | 30 samples/query, Node process on desktop; excludes transfer and startup |
+| Prebuilt index initialization | 11.66ms in the search benchmark | Additional index heap 17.5MB; whole Node heap 79MB |
+| Hosted HTTPS sandbox batch | 50/50 persisted in 5.86s | Node desktop client; five concurrent uploads; includes final D1 reread |
+| Browser batch, local receiver | 50/50 persisted in 0.94s | Actual resume bytes and receipt reread; synthetic data, five concurrent requests |
+| Local known-form browser baseline | 50 fixtures in 8.09s after startup | Two browser contexts; median of three runs; injected receiver delay |
+
+These are desktop measurements, not RTX 3050 laptop results. The site reports the timing measured on the device that opens it. Catalog plus index are about 4.13MB gzip in local compression measurements; actual transfer and browser memory depend on deployment/device. See [benchmarks and raw evidence](docs/BENCHMARKS.md), including slower and partial discovery runs.
+
+## Run the Python discovery core
+
+Python 3.12+ and [uv](https://docs.astral.sh/uv/):
 
 ```powershell
 uv sync --locked
 uv run python -m applyburst.cli refresh
-uv run python -m applyburst.cli search engineer --limit 50
+uv run python -m applyburst.cli search engineer --scope all --limit 50
 uv run python -m applyburst.cli stats
-```
-
-Use `refresh --preset turkey` to fetch the four Turkish employer boards only. Search defaults to title matching; `--scope all` includes location and description text. `--max-age 3600` excludes records not observed successfully within an hour. Jobs are stored in ignored `.data/catalog.sqlite`; a failed refresh does not refresh their age or erase the previous board.
-
-The board registry lives in [config/boards.json](config/boards.json). It is a small seed, not a market-wide catalog. Greenhouse, Lever and Ashby are supported. Public reads use HTTP; no browser starts for discovery.
-
-## Try the discovery API
-
-```powershell
 uv run python -m applyburst.api --port 8765
 ```
 
-Open **http://127.0.0.1:8765/docs** for interactive API documentation. `POST /refresh` starts a public read-only refresh; `GET /jobs?query=engineer&limit=50` searches immediately, including while feeds finish; `GET /status` shows source coverage and refresh status. The service binds to loopback and does not submit applications. Every result's application capability is currently `discovery_only`.
+The CLI/API remain the simple SQLite baseline; the website's richer field/Boolean grammar lives in the shared JavaScript search engine. Open http://127.0.0.1:8765/docs for the Python API. Its application capability remains `discovery_only`.
 
-## Reproduce measurements
+Use `refresh --preset turkey` for the four Turkish employer boards. `--max-age 3600` excludes observations older than an hour. Data lives in ignored `.data/catalog.sqlite`. Failed boards retain their previous postings and observation ages. The [registry](config/boards.json) is a small verified seed, not a market-wide catalog.
+
+## Run the website
+
+The full source is in [demo/](demo/README.md), using Node 22.13+, React/Vinext, Cloudflare Workers, D1, and R2. The bundled data works before a live refresh. See its README for installation, the local schema migration, and startup.
+
+```powershell
+cd demo
+npm ci
+npm test
+npm run build
+# Apply the documented D1 migration once to a fresh local database.
+npm run dev -- --port 5175
+```
+
+Regenerate the shared snapshot from the repository root, then rebuild the packed index:
+
+```powershell
+uv run python -m applyburst.export_catalog --output demo/public/jobs.json
+cd demo
+node scripts/build-search-index.mjs
+node scripts/benchmark-search.mjs
+```
+
+Only public job data belongs in the snapshot. Detailed search uses a revision-checked prebuilt inverted index in a Web Worker. A changed catalog safely rebuilds its index on the CPU. At market-wide scale, serve retrieval from a shared service instead of downloading the entire index.
+
+## Reproduce the baseline
 
 ```powershell
 uv sync --locked --extra bench
 uv run --extra bench python -m pytest -q
 uv run --extra bench python -m applyburst.discovery_bench --output artifacts/discovery.json
 uv run --extra bench python -m applyburst.api_bench --output artifacts/search-http.json
+uv run --extra bench python -m applyburst.bench --live --repeats 3 --output artifacts/baseline.json
 ```
 
-The HTTP search benchmark needs a populated catalog from `cli refresh`. The discovery benchmark starts its own empty in-memory catalog and does not change an existing user's data.
+The HTTP search benchmark needs a populated catalog. Discovery benchmarking uses its own empty in-memory index. Add `--browser` after installing Playwright Chromium to measure local known-form replay. Use a local browser-cache path; on this machine it is `D:\cache\ms-playwright`. The optional `scraper` extra enables `python -m applyburst.scraper_probe`; the bounded LinkedIn probe returned 20/50 requested jobs in 14.3s with a 429 warning. It is outside the interactive path.
 
-For actual browser execution against the local receiver on Windows, place browsers on D: on this machine:
+## Design and evidence
 
-```powershell
-$env:PLAYWRIGHT_BROWSERS_PATH = 'D:\cache\ms-playwright'
-uv run --extra bench python -m playwright install chromium
-uv run --extra bench python -m applyburst.bench --live --browser --repeats 3 --output artifacts/baseline.json
-```
+- [Architecture](docs/ARCHITECTURE.md): components, contracts, caching, search, preparation, execution, confirmation, and scaling.
+- [Primary-source review](docs/RESEARCH.md): ATS feeds, public systems, browser-agent literature, Jev, and lightweight classifiers.
+- [Measurements](docs/BENCHMARKS.md): precise timing boundaries and preserved raw reports.
+- [Roadmap](docs/ROADMAP.md): remaining coverage, real-adapter, quality, and laptop gates.
+- [AGENTS.md](AGENTS.md): **no subagents**, **no n8n**, **CPU first**, and no unreviewed real submissions.
 
-On Linux/macOS, choose a local browser-cache path and use `export PLAYWRIGHT_BROWSERS_PATH=...`. Omit `--browser` to run HTTP and SMTP fixtures only. Repeated runs include a 2-request/second case, so the full benchmark deliberately takes several minutes.
-
-The optional LinkedIn probe installs heavier scraper dependencies and makes a bounded public search:
-
-```powershell
-uv run --extra bench --extra scraper python -m applyburst.scraper_probe
-```
-
-It stops after 60 seconds, uses no login or proxy, and may return partial data. It is not part of the fast search request path.
-
-## Decisions and next work
-
-- [Architecture](docs/ARCHITECTURE.md): background ingestion → searchable cache → preparation → deterministic execution → verified receipt.
-- [Primary-source review](docs/RESEARCH.md): ATS feeds, public systems, browser-agent literature, Jev and lightweight classifier alternatives.
-- [Measurements and limitations](docs/BENCHMARKS.md): raw evidence, timing boundaries and reproduction commands.
-- [Ordered roadmap](docs/ROADMAP.md): coverage and laptop verification first; real application adapters next; models and the public website afterward.
-- [AGENTS.md](AGENTS.md): explicit **no subagents**, **no n8n**, **CPU-first**, and **no unapproved real submissions** rules.
-
-Source is MIT-licensed. The GitHub repository is initially private while research is assembled; hosting and public release have not happened.
+Source is MIT-licensed. Model benchmarks remain deferred; there is no unverified claim that a classifier is better than Jev.

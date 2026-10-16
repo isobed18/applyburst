@@ -6,7 +6,7 @@ Reviewed 16 October 2026. Primary sources are linked below. Public project claim
 
 | Work | What it establishes | Decision for this project |
 | --- | --- | --- |
-| [Greenhouse Job Board API](https://docs.greenhouse.io/job-board.html) | Public board reads; optional content and question fields; authenticated application submission | Metadata feed first; hydrate selected details; do not assume an applicant can use the POST API |
+| [Greenhouse Job Board API](https://docs.greenhouse.io/job-board.html) | Public board reads; optional content and question fields; authenticated application submission | Full descriptions in background ingestion for detailed search; question schemas on selection; do not assume an applicant can use the POST API |
 | [Lever Postings API](https://github.com/lever/postings-api) | Public per-company postings, application fields, employer API key and POST throttling | Structured ingestion; separate read and application capabilities |
 | [Ashby public job API](https://developers.ashbyhq.com/docs/public-job-posting-api) | Structured postings with application URLs and listing visibility | Filter unlisted records; preserve the original application URL |
 | [JobSpy](https://github.com/speedyapply/JobSpy) | Search across several job boards; fetching missing descriptions adds per-job requests | Optional coverage fallback; not the interactive latency dependency |

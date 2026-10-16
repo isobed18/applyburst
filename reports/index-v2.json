@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-16T10:01:42.362Z",
+  "full_build_ms": 1000.4561000000001,
+  "prebuilt_init_ms": 3.6161999999999352,
+  "index_bytes": 6265598,
+  "index_gzip_bytes": 1552371,
+  "verified_queries": 6,
+  "prebuilt": true
+}

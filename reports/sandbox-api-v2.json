@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-16T10:11:23.930Z",
+  "scope": "Synthetic data; ApplyBurst sandbox only; no employer or mail writes",
+  "origin": "http://127.0.0.1:5175",
+  "run_id": "0bc07a57-d393-4821-a523-12905fd89d95",
+  "elapsed_ms": 146.2409,
+  "checks": [
+    "Valid synthetic multipart submission and SHA-256 receipt",
+    "Same job/run replay returns the original persisted receipt",
+    "Corrupt resume rejected",
+    "Missing candidate answer rejected",
+    "Unregistered board rejected",
+    "Independent read confirms exactly one durable receipt"
+  ],
+  "passed": 6
+}

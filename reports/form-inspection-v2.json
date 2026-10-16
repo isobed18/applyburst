@@ -1,0 +1,628 @@
+{
+  "job_id": "greenhouse:stripe:8198280",
+  "provider": "greenhouse",
+  "title": "Software Engineer, Backend",
+  "inspection": "public_question_schema",
+  "inspected_at": 1792144581.243,
+  "groups": [
+    {
+      "id": "0",
+      "label": "First Name",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "first_name",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": "first_name",
+      "preparation": "known_field",
+      "note": "Recognized field; supply an approved candidate value."
+    },
+    {
+      "id": "1",
+      "label": "Last Name",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "last_name",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": "last_name",
+      "preparation": "known_field",
+      "note": "Recognized field; supply an approved candidate value."
+    },
+    {
+      "id": "2",
+      "label": "Email",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "email",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": "email",
+      "preparation": "known_field",
+      "note": "Recognized field; supply an approved candidate value."
+    },
+    {
+      "id": "3",
+      "label": "Phone",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "phone",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": "phone",
+      "preparation": "known_field",
+      "note": "Recognized field; supply an approved candidate value."
+    },
+    {
+      "id": "4",
+      "label": "Resume/CV",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "resume",
+          "type": "input_file",
+          "options": []
+        },
+        {
+          "name": "resume_text",
+          "type": "textarea",
+          "options": []
+        }
+      ],
+      "mapping": "resume",
+      "preparation": "known_field",
+      "note": "Recognized field; supply an approved candidate value."
+    },
+    {
+      "id": "5",
+      "label": "Cover Letter",
+      "required": false,
+      "alternatives": [
+        {
+          "name": "cover_letter",
+          "type": "input_file",
+          "options": []
+        },
+        {
+          "name": "cover_letter_text",
+          "type": "textarea",
+          "options": []
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "6",
+      "label": "Who is your current or previous employer?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155535",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "7",
+      "label": "What is your current or previous job title?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155536",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "8",
+      "label": "Please select the country where you currently reside.\n",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155537",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "751332968",
+              "label": "Australia"
+            },
+            {
+              "value": "751332969",
+              "label": "Belgium"
+            },
+            {
+              "value": "751332970",
+              "label": "Brazil"
+            },
+            {
+              "value": "751332971",
+              "label": "Canada"
+            },
+            {
+              "value": "751332972",
+              "label": "Egypt"
+            },
+            {
+              "value": "751332973",
+              "label": "France"
+            },
+            {
+              "value": "751332974",
+              "label": "Germany"
+            },
+            {
+              "value": "751332975",
+              "label": "India"
+            },
+            {
+              "value": "751332976",
+              "label": "Indonesia"
+            },
+            {
+              "value": "751332977",
+              "label": "Ireland"
+            },
+            {
+              "value": "751332978",
+              "label": "Israel"
+            },
+            {
+              "value": "751332979",
+              "label": "Italy"
+            },
+            {
+              "value": "751332980",
+              "label": "Japan"
+            },
+            {
+              "value": "751332981",
+              "label": "Malaysia"
+            },
+            {
+              "value": "751332982",
+              "label": "Mexico"
+            },
+            {
+              "value": "751332983",
+              "label": "New Zealand"
+            },
+            {
+              "value": "751332984",
+              "label": "Poland"
+            },
+            {
+              "value": "751332985",
+              "label": "Portugal"
+            },
+            {
+              "value": "751332986",
+              "label": "Romania"
+            },
+            {
+              "value": "751332987",
+              "label": "Singapore"
+            },
+            {
+              "value": "751332988",
+              "label": "South Korea"
+            },
+            {
+              "value": "751332989",
+              "label": "Spain"
+            },
+            {
+              "value": "751332990",
+              "label": "Sweden"
+            },
+            {
+              "value": "751332991",
+              "label": "Switzerland"
+            },
+            {
+              "value": "751332992",
+              "label": "Taiwan"
+            },
+            {
+              "value": "751332993",
+              "label": "Thailand"
+            },
+            {
+              "value": "751332994",
+              "label": "The Netherlands"
+            },
+            {
+              "value": "751332995",
+              "label": "UAE"
+            },
+            {
+              "value": "751332996",
+              "label": "UK"
+            },
+            {
+              "value": "751332997",
+              "label": "US"
+            },
+            {
+              "value": "751332998",
+              "label": "Other"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "9",
+      "label": "Are you currently authorized to work in the US?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155538",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "751332999",
+              "label": "Yes"
+            },
+            {
+              "value": "751333000",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "10",
+      "label": "Will you require Stripe to sponsor you for a US work permit now or in the future?\n",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155539",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "751333001",
+              "label": "Yes"
+            },
+            {
+              "value": "751333002",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "11",
+      "label": "If this role offers the option to work from a remote location, do you plan to work remotely?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155540",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "751333003",
+              "label": "Yes, I intend to work remotely."
+            },
+            {
+              "value": "751333004",
+              "label": "No, I intend to work from an office location."
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "12",
+      "label": "Have you ever been employed by Stripe or a Stripe affiliate?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155541",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "1",
+              "label": "Yes"
+            },
+            {
+              "value": "0",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "13",
+      "label": "Do you opt-in to receive WhatsApp messages from Stripe Recruiting?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155542",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "751333005",
+              "label": "Yes"
+            },
+            {
+              "value": "751333006",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "14",
+      "label": "If located in the US, in what city and state do you reside?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69155543",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "15",
+      "label": "Do you possess 4 years of experience in building software solutions in Java, C++, Python, or Ruby?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69194896",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "1",
+              "label": "Yes"
+            },
+            {
+              "value": "0",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "16",
+      "label": "Do you possess 4 years of experience in designing, building and maintaining scalable systems?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69194897",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "1",
+              "label": "Yes"
+            },
+            {
+              "value": "0",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "17",
+      "label": "Do you possess 4 years of experience in translating business needs into software requirements and designs?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69194898",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "1",
+              "label": "Yes"
+            },
+            {
+              "value": "0",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "18",
+      "label": "Do you possess 4 years of experience in debugging production issues across services and multiple levels of the stack?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69194899",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "1",
+              "label": "Yes"
+            },
+            {
+              "value": "0",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "19",
+      "label": "Do you applicant possess 4 years of experience in distributed systems?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69194900",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "1",
+              "label": "Yes"
+            },
+            {
+              "value": "0",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "20",
+      "label": "Do you possess 4 years of experience in design and implementation of scalable high-performance RESTful microservices?",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "question_69194901",
+          "type": "multi_value_single_select",
+          "options": [
+            {
+              "value": "1",
+              "label": "Yes"
+            },
+            {
+              "value": "0",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "21",
+      "label": "Longitude",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "longitude",
+          "type": "input_hidden",
+          "options": []
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "22",
+      "label": "Latitude",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "latitude",
+          "type": "input_hidden",
+          "options": []
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "23",
+      "label": "Location",
+      "required": true,
+      "alternatives": [
+        {
+          "name": "location",
+          "type": "input_text",
+          "options": []
+        }
+      ],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "24",
+      "label": "Additional question",
+      "required": false,
+      "alternatives": [],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    },
+    {
+      "id": "25",
+      "label": "Additional question",
+      "required": false,
+      "alternatives": [],
+      "mapping": null,
+      "preparation": "needs_answer",
+      "note": "No answer is invented."
+    }
+  ],
+  "required_groups": 23,
+  "recognized_required_groups": 5,
+  "unresolved_required_groups": 18,
+  "status": "needs_candidate_answers",
+  "automatic_submission_verified": false,
+  "note": "Read-only inspection. Recognizing fields does not prove that a real application can be submitted.",
+  "source_url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs/8198280?questions=true"
+}

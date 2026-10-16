@@ -10,6 +10,7 @@ from dataclasses import dataclass
 import httpx
 
 from .catalog import Catalog, Job
+from .enrichment import plain_text, enrich
 
 
 @dataclass(frozen=True)
@@ -33,25 +34,61 @@ DEFAULT_BOARDS = [Board("greenhouse", "stripe"), Board("greenhouse", "cloudflare
 
 def load_boards(path="config/boards.json", preset=None):
     rows = json.loads(Path(path).read_text(encoding="utf-8"))
-    return [Board(row["provider"], row["name"]) for row in rows
+    return [Board(row["provider"], row["name"], content=row.get("content", True)) for row in rows
             if row.get("enabled", True) and (preset is None or preset in row.get("tags", []))]
 
 
 def normalize(board: Board, payload) -> list[Job]:
     if board.provider == "greenhouse":
         rows = payload["jobs"]
-        return [Job(board.provider, board.name, str(j["id"]), j["title"],
-                    j.get("location", {}).get("name", ""), j["absolute_url"],
-                    j.get("content", "")) for j in rows if j.get("internal_job_id") is not None]
+        jobs = []
+        for j in rows:
+            if j.get("internal_job_id") is None:
+                continue
+            location = j.get("location", {}).get("name", "")
+            description = plain_text(j.get("content", ""))
+            offices = [o["name"] for o in j.get("offices", []) if o.get("name")]
+            jobs.append(Job(board.provider, board.name, str(j["id"]), j["title"], location,
+                j["absolute_url"], description, locations=tuple(dict.fromkeys([location]+offices)),
+                opportunity_id=str(j['internal_job_id']),
+                department=", ".join(d["name"] for d in j.get("departments", []) if d.get("name")),
+                posted_at=j.get("first_published"), **enrich(j["title"], description, location)))
+        return jobs
     if board.provider == "lever":
         if not isinstance(payload, list):
             raise ValueError("Expected Lever postings array")
-        return [Job(board.provider, board.name, j["id"], j["text"],
-                    j.get("categories", {}).get("location", ""), j["applyUrl"],
-                    j.get("descriptionPlain", "")) for j in payload]
-    return [Job(board.provider, board.name, j["id"], j["title"], j.get("location", ""),
-                j["applyUrl"], j.get("descriptionPlain", ""))
-            for j in payload["jobs"] if j.get("isListed", True)]
+        jobs = []
+        for j in payload:
+            categories = j.get("categories", {})
+            location = categories.get("location", "")
+            # Lever's first paragraph alone excludes most responsibilities/requirements.
+            sections = [j.get("descriptionPlain", j.get("description", ""))]
+            sections += [section.get("text", "") + "\n" + section.get("content", "") for section in j.get("lists", [])]
+            sections += [j.get("additionalPlain", j.get("additional", "")), j.get("salaryDescriptionPlain", "")]
+            description = plain_text("\n\n".join(sections))
+            locations = categories.get("allLocations", []) or [location]
+            if isinstance(locations, str):
+                locations = [locations]
+            salary = j.get("salaryRange")
+            if salary:
+                salary = {"min": salary.get("min"), "max": salary.get("max"),
+                          "currency": salary.get("currency"), "period": salary.get("interval"), "source": "provider_field"}
+            jobs.append(Job(board.provider, board.name, j["id"], j["text"], location, j["applyUrl"], description,
+                locations=tuple(dict.fromkeys([location]+locations)), department=categories.get("department", ""),
+                posted_at=str(j["createdAt"]) if j.get("createdAt") else None, salary=salary,
+                **enrich(j["text"], description, location, j.get("workplaceType"), categories.get("commitment"))))
+        return jobs
+    jobs = []
+    for j in payload["jobs"]:
+        if not j.get("isListed", True):
+            continue
+        location = j.get("location", "")
+        description = plain_text(j.get("descriptionPlain", j.get("descriptionHtml", "")))
+        locations = [location] + [x["location"] for x in j.get("secondaryLocations", []) if x.get("location")]
+        jobs.append(Job(board.provider, board.name, j["id"], j["title"], location, j["applyUrl"], description,
+            locations=tuple(dict.fromkeys(locations)), department=j.get("department", ""), posted_at=j.get("publishedAt"),
+            **enrich(j["title"], description, location, "remote" if j.get("isRemote") else None, j.get("employmentType"))))
+    return jobs
 
 
 async def refresh(catalog: Catalog, boards: list[Board] | None = None, concurrency: int = 4,
@@ -72,6 +109,9 @@ async def refresh(catalog: Catalog, boards: list[Board] | None = None, concurren
                 report = {"provider": board.provider, "board": board.name, "url": board.url}
                 try:
                     state = catalog.board_state(board.provider, board.name)
+                    representation='normalizer-v3:'+board.url
+                    if state.get('representation') != representation:
+                        state={}
                     headers = {}
                     if state.get("etag"):
                         headers["If-None-Match"] = state["etag"]
@@ -87,7 +127,7 @@ async def refresh(catalog: Catalog, boards: list[Board] | None = None, concurren
                             raise ValueError("304 without a previous successful snapshot")
                         catalog.touch_board(board.provider, board.name)
                         catalog.record_refresh(board.provider, board.name, state.get("etag"),
-                                               state.get("modified"), state["sha256"])
+                                               state.get("modified"), state["sha256"],representation)
                         report.update(jobs=None, outcome="not_modified")
                     else:
                         response.raise_for_status()
@@ -99,7 +139,7 @@ async def refresh(catalog: Catalog, boards: list[Board] | None = None, concurren
                             catalog.replace_board(board.provider, board.name, jobs)
                             report.update(jobs=len(jobs), outcome="indexed")
                         catalog.record_refresh(board.provider, board.name, response.headers.get("etag"),
-                                               response.headers.get("last-modified"), digest)
+                                               response.headers.get("last-modified"), digest,representation)
                     if first_50_indexed_ms is None and catalog.count() >= 50:
                         first_50_indexed_ms = round((time.perf_counter()-start)*1000, 3)
                     if first_50_matches_ms is None and len(catalog.search(milestone_query, scope="title")) >= 50:
