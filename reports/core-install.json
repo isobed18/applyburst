@@ -1,0 +1,41 @@
+{
+  "utc": "2026-10-16T08:58:38.462890+00:00",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "install": "uv sync --locked in a new isolated environment, no extras",
+  "core_api_import": true,
+  "search_results": 50,
+  "optional_modules_present": {
+    "torch": false,
+    "transformers": false,
+    "playwright": false,
+    "jobspy": false,
+    "numpy": false,
+    "pandas": false
+  },
+  "packages": [
+    "aiosmtpd",
+    "aiosmtplib",
+    "annotated-doc",
+    "annotated-types",
+    "anyio",
+    "applyburst",
+    "applyburst",
+    "atpublic",
+    "attrs",
+    "certifi",
+    "click",
+    "fastapi",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "opentelemetry-api",
+    "pydantic",
+    "pydantic_core",
+    "python-multipart",
+    "starlette",
+    "typing-inspection",
+    "typing_extensions",
+    "uvicorn"
+  ]
+}

@@ -1,0 +1,19 @@
+name: CPU baseline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v10.3.0
+      - run: uv sync --locked --extra bench
+      - run: uv run --extra bench python -m pytest -q
+      - name: Verify loopback HTTP and SMTP execution without a GPU
+        run: uv run --extra bench python -m applyburst.bench --jobs 10 --repeats 1 --output artifacts/ci-smoke.json
